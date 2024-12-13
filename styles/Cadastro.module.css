@@ -22,19 +22,39 @@
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 }
 
 .checkboxContainer {
   display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+  padding: 10px 0;
+}
+
+.checkboxContainer input[type="checkbox"] {
+  margin-right: 5px;
+  transform: scale(1.2); 
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .checkboxContainer label {
-  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
+
+.checkboxContainer label:hover {
+  color: #007bff; 
+}
+
+.checkboxContainer input[type="checkbox"]:checked + label {
+  font-weight: bold;
+}
+
 
 .btn {
   margin-top: 10px;

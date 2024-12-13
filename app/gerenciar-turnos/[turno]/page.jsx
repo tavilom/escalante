@@ -24,12 +24,10 @@ export default function GerenciarTurnos() {
         const dados = await response.json();
         console.log('Dados carregados do servidor:', dados); // Verificar dados recebidos
 
-        const guardasDoTurno = dados.filter(
-          (guarda) => guarda.turno === turno && guarda.mes === mesAtual
-        );
-        console.log('Guardas filtrados:', guardasDoTurno); // Verificar se o filtro funciona corretamente
+        const guardaEncontrado = dados.find(guarda => guarda.id === turno);
+        console.log('Guarda encontrado:', guardaEncontrado); // Verificar se o guarda foi encontrado
 
-        setGuardas(guardasDoTurno);
+        setGuardas(guardaEncontrado ? [guardaEncontrado] : []);
       } catch (error) {
         console.error('Erro ao carregar guardas:', error);
         Swal.fire('Erro ao carregar guardas.');
@@ -111,7 +109,8 @@ export default function GerenciarTurnos() {
             </div>
           ))
         ) : (
-          <p>Nenhum guarda encontrado para este turno e mês.</p>
+          <p className={styles.mensagemNenhumGuarda}>Nenhum guarda encontrado para este turno e mês.</p>
+
         )}
       </div>
       <button className={styles.buttonSalvar} onClick={handleSave}>

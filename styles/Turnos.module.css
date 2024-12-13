@@ -25,6 +25,13 @@
   max-width: 400px; /* Limita a largura do calendário */
 }
 
+.diaComEscala {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 50%;
+}
+
+
 .infoEscalas {
   flex: 1; /* Define a largura da coluna */
   max-width: 400px; /* Limita a largura das informações */

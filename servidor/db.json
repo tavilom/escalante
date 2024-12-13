@@ -1,46 +1,102 @@
 {
-  "guardas": [
-    {
-      "id": 1,
-      "nome": "João Silva",
-      "expediente": "Manhã",
-      "coordenador": true,
-      "fiscal": ["on"],
-      "turno": "7:00 - 15:00",
-      "dia": "2024-12-01",
-      "mes": "2024-12"
-    },
-    {
-      "id": 2,
-      "nome": "Maria Oliveira",
-      "expediente": "Tarde",
-      "coordenador": false,
-      "fiscal": ["off"],
-      "turno": "15:00 - 23:00",
-      "dia": "2024-12-01",
-      "mes": "2024-12"
-    },
-    {
-      "id": 3,
-      "nome": "João Silva",
-      "expediente": "Manhã",
-      "coordenador": true,
-      "fiscal": ["on"],
-      "turno": "7:00 - 15:00",
-      "dia": "2024-12-02",
-      "mes": "2024-12"
-    },
-    {
-      "id": 4,
-      "nome": "Maria Oliveira",
-      "expediente": "Tarde",
-      "coordenador": false,
-      "fiscal": ["off"],
-      "turno": "15:00 - 23:00",
-      "dia": "2024-12-02",
-      "mes": "2024-12"
-    }
-  ],
+    "guardas": [
+      {
+        "id": "1",
+        "nome": "Maria Oliveira",
+        "expediente": "1",
+        "coordenador": true,
+        "fiscal": ["on"],
+        "turno": "7:00 - 15:00",
+        "dia": "2024-12-01",
+        "mes": "2024-12"
+      },
+      {
+        "id": "2",
+        "nome": "Maria Oliveira",
+        "expediente": "2",
+        "coordenador": false,
+        "fiscal": ["off"],
+        "turno": "15:00 - 23:00",
+        "dia": "2024-12-01",
+        "mes": "2024-12"
+      },
+      {
+        "id": "3",
+        "nome": "João Silva",
+        "expediente": "1",
+        "coordenador": true,
+        "fiscal": ["on"],
+        "turno": "7:00 - 15:00",
+        "dia": "2024-12-02",
+        "mes": "2024-12"
+      },
+      {
+        "id": "4",
+        "nome": "Maria Oliveira",
+        "expediente": "2",
+        "coordenador": false,
+        "fiscal": ["off"],
+        "turno": "15:00 - 23:00",
+        "dia": "2024-12-02",
+        "mes": "2024-12"
+      },
+      {
+        "id": "160",
+        "nome": "Otavio Mastrantonio",
+        "expediente": "3",
+        "coordenador": false,
+        "fiscal": [],
+        "turno": "24 Horas",
+        "dia": "2024-12-12",
+        "mes": "2024-12"
+      },
+      {
+        "id": "161",
+        "nome": "Joaquim Pintus",
+        "expediente": "3",
+        "coordenador": false,
+        "fiscal": [],
+        "turno": "24 Horas",
+        "dia": "2024-12-12",
+        "mes": "2024-12"
+      },
+      {
+        "id": "123",
+        "nome": "João Silva",
+        "turno": "24x72",
+        "expediente": "2",
+        "fiscal": true,
+        "coordenador": false,
+        "isAdmin": true,
+        "escala": [
+          {
+            "dia": "2024-12-01",
+            "mes": "2024-12",
+            "expediente": "07h às 07h"
+          },
+          {
+            "dia": "2024-12-05",
+            "mes": "2024-12",
+            "expediente": "07h às 07h"
+          }
+        ]
+      }
+    ],
+    "expedientes": [
+      {
+        "id": 1,
+        "nome": "Expediente A"
+      },
+      {
+        "id": 2,
+        "nome": "Expediente B"
+      },
+      {
+        "id": 3,
+        "nome": "Expediente C"
+      }
+    ]
+  ,
   "admins": [
     {
       "id": "b1a6",
