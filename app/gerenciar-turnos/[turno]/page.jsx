@@ -109,7 +109,8 @@ export default function GerenciarTurnos() {
             </div>
           ))
         ) : (
-          <p>Nenhum guarda encontrado para este turno e mês.</p>
+          <p className={styles.mensagemNenhumGuarda}>Nenhum guarda encontrado para este turno e mês.</p>
+
         )}
       </div>
       <button className={styles.buttonSalvar} onClick={handleSave}>

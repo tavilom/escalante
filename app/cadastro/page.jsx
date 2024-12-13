@@ -1,4 +1,5 @@
-'use client'
+'use client';
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,13 +18,26 @@ export default function Cadastro() {
     }
   });
 
-  // Função para calcular as datas e incluir o expediente para cada turno
+  const [expedientes, setExpedientes] = useState([]);
+
+  useEffect(() => {
+    async function fetchExpedientes() {
+      const response = await fetch("http://localhost:3004/expedientes");
+      if (response.ok) {
+        const data = await response.json();
+        setExpedientes(data);
+      } else {
+        toast.error("Erro ao carregar os expedientes");
+      }
+    }
+    fetchExpedientes();
+  }, []);
+
   function gerarEscala(turno, expediente) {
     const hoje = new Date();
     const inicioMes = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
     const diasNoMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
     const escala = [];
-
     let diaAtual = inicioMes;
 
     if (turno === "12x36") {
@@ -31,18 +45,18 @@ export default function Cadastro() {
         escala.push({
           dia: format(diaAtual, 'yyyy-MM-dd'),
           mes: format(diaAtual, 'yyyy-MM'),
-          expediente: escala.length % 2 === 0 ? "07h às 19h" : "19h às 07h", // Alterna entre os expedientes padrões
+          expediente: escala.length % 2 === 0 ? "07h às 19h" : "19h às 07h",
         });
-        diaAtual = addDays(diaAtual, 2); // Trabalha 12h, folga 36h
+        diaAtual = addDays(diaAtual, 2);
       }
     } else if (turno === "24x72") {
       while (diaAtual.getDate() <= diasNoMes) {
         escala.push({
           dia: format(diaAtual, 'yyyy-MM-dd'),
           mes: format(diaAtual, 'yyyy-MM'),
-          expediente, // Usa o expediente definido pelo usuário
+          expediente,
         });
-        diaAtual = addDays(diaAtual, 4); // Trabalha 24h, folga 72h
+        diaAtual = addDays(diaAtual, 4);
       }
     }
 
@@ -50,18 +64,18 @@ export default function Cadastro() {
   }
 
   async function enviaDados(data) {
-    const id = Math.floor(Math.random() * 1000); // Gera um ID aleatório
+    const id = Math.floor(Math.random() * 1000);
     const escala = gerarEscala(data.turno, data.expediente);
 
     const novoGuarda = {
       id,
       nome: data.nome,
       turno: data.turno,
-      expediente: data.expediente, // Inclui o expediente selecionado
+      expediente: parseInt(data.expediente, 10), // Converte o expediente para número
       fiscal: data.fiscal,
       coordenador: data.coordenador,
       isAdmin: data.isAdmin,
-      escala, // Inclui as escalas calculadas com os expedientes
+      escala,
     };
 
     const guarda = await fetch("http://localhost:3004/guardas", {
@@ -98,7 +112,14 @@ export default function Cadastro() {
         <div className="row mt-3">
           <div className="col-6">
             <label htmlFor="expediente" className={styles.formLabel}>Expediente</label>
-            <input type="text" className={`form-control ${styles.formControl}`} id="expediente" placeholder="Ex: 07h às 19h" {...register("expediente")} required />
+            <select id="expediente" className={`form-select ${styles.formSelect}`} {...register("expediente")} required>
+              <option value="">Selecione um expediente</option>
+              {expedientes.map(exp => (
+                <option key={exp.id} value={exp.id}>
+                  {exp.nome}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="col-6">
             <label htmlFor="funcoes" className={styles.formLabel}>Funções</label>
