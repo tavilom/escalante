@@ -13,7 +13,7 @@ import {
     getFuncionarios,
     updateFuncionario,
     funcionarioDelete
-  } from './controllers/funcionarioController.js';
+  } from './controllers/guardasController.js';
 
 const router = Router();
 
